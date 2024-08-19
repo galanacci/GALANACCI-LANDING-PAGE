@@ -9,6 +9,29 @@ html, body {
     overflow: hidden;
 }
 
+/* Navbar Styles */
+
+nav {
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    z-index: 10;
+    transition: opacity 0.3s;
+}
+
+nav .logo-container img {
+    height: 40px;
+    transition: height 0.3s;
+}
+
+/* Email Form Styles */
+
 .container {
     text-align: center;
     position: relative;
@@ -82,3 +105,4 @@ button {
         padding: 10px 15px;
     }
 }
+
