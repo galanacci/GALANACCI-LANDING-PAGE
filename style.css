@@ -108,11 +108,6 @@ button {
     button {
         padding: 10px 15px;
     }
-
-    /* Increase bottom padding on small screens */
-    .container {
-        padding-bottom: 150px;
-    }
 }
 
 /* Landing Page Image */
