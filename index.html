@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Collector</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #email-form {
+            text-align: center;
+        }
+        input[type="email"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #673CAF;
+        }
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="email-form">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = document.getElementById('email').value;
+            var statusDiv = document.getElementById('status');
+            
+            statusDiv.textContent = 'Submitting...';
+            console.log('Attempting to submit email:', email);
+            
+            fetch('https://script.google.com/macros/s/AKfycbx35Bpl5qXnMn7LhpdWyBL2HretihCAKCVsh4FdY-gXTiIrSuDJQ06EcJ5iIkbKO-GK/exec', {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({email: email})
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            }).then(data => {
+                console.log('Response data:', data);
+                if (data.result === "success") {
+                    statusDiv.textContent = 'Thank you for signing up!';
+                    document.getElementById('email').value = '';
+                } else {
+                    statusDiv.textContent = 'Error: ' + data.message;
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                statusDiv.textContent = 'An error occurred. Please try again.';
+            });
+        });
+    </script>
+</body>
+</html>
