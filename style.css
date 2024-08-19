@@ -40,7 +40,7 @@ nav .logo-container img {
 .container {
     text-align: center;
     width: 100%;
-    padding: 0 30px 50px;
+    padding: 0 30px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@ nav .logo-container img {
 }
 
 #email-form {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     z-index: 1000;
