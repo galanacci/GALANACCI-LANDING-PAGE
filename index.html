@@ -17,6 +17,10 @@
         .container {
             text-align: center;
             position: relative;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 30px;
+            box-sizing: border-box;
         }
         #email-form {
             margin-bottom: 20px;
@@ -24,7 +28,8 @@
         input[type="email"] {
             padding: 10px;
             font-size: 16px;
-            width: 250px;
+            width: calc(100% - 110px);
+            max-width: 250px;
             margin-right: 10px;
         }
         button {
