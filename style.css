@@ -37,6 +37,7 @@ input[type="email"] {
     background-color: black; 
     color: white; 
     border: 1px solid white; 
+    border-radius: 10px;
 }
 
 button {
@@ -47,7 +48,7 @@ button {
     border: none;
     cursor: pointer;
     white-space: nowrap;
-    border-radius: 0;
+    border-radius: 10px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
