@@ -57,32 +57,21 @@
             statusDiv.textContent = 'Submitting...';
             console.log('Attempting to submit email:', email);
             
-            fetch('https://script.google.com/macros/s/AKfycbwn6pR-W4O_19NKZ6vVT1-2z7b_rA8UiXOQJN1vFewkbkvBqpXCf2Uj0AMtj-Xq52U7/exec', {
-                method: 'POST',
-                mode: 'cors',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({email: email})
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            }).then(data => {
-                console.log('Response data:', data);
-                if (data.result === "success") {
-                    statusDiv.textContent = 'Thank you for signing up!';
-                    document.getElementById('email').value = '';
-                } else {
-                    statusDiv.textContent = 'Error: ' + data.message;
-                }
-            }).catch(error => {
-                console.error('Error:', error);
-                statusDiv.textContent = 'An error occurred. Please try again.';
-            });
+            var script = document.createElement('script');
+            script.src = 'https://script.google.com/macros/s/AKfycbxf7qjH8BxqCaQ3j_sXK_Fo2hDc-xcO2wMgPuT6cZmBdJLnZ9zrvHxmwrvwsFhWchUt/exec?callback=handleResponse&email=' + encodeURIComponent(email);
+            document.body.appendChild(script);
         });
+
+        function handleResponse(response) {
+            var statusDiv = document.getElementById('status');
+            console.log('Response:', response);
+            if (response.result === "success") {
+                statusDiv.textContent = 'Thank you for signing up!';
+                document.getElementById('email').value = '';
+            } else {
+                statusDiv.textContent = 'Error: ' + response.message;
+            }
+        }
     </script>
 </body>
 </html>
