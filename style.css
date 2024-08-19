@@ -40,13 +40,13 @@ nav .logo-container img {
 .container {
     text-align: center;
     width: 100%;
-    padding: 0 30px;
+    padding: 0 30px 50px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    flex-grow: 1; /* Ensures the container grows to take available space */
+    flex-grow: 1; 
 }
 
 #email-form {
@@ -107,6 +107,11 @@ button {
     }
     button {
         padding: 10px 15px;
+    }
+
+    /* Increase bottom padding on small screens */
+    .container {
+        padding-bottom: 70px;
     }
 }
 
