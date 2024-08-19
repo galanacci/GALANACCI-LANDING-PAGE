@@ -21,11 +21,24 @@
         <form id="email-form">
             <input type="email" id="email" placeholder="Enter email here" required>
             <button type="submit">
-                <span class="button-text">Join Now</span>
+                <span class="button-text">Join waiting list</span>
                 <span class="button-arrow">➔</span>
             </button>
         </form>
         <div id="status"></div>
+    </div>
+
+    <div id="container">
+        <div id="redacted" class="side">
+            <img src="src/REDACTED-POEM.png" alt="REDACTED-POEM" class="poem-image">
+        </div>
+        <div id="unredacted" class="side">
+            <img src="src/UNREDACTED-POEM.png" alt="UNREDACTED-POEM" class="poem-image">
+        </div>
+    </div>
+
+    <div id="camera-slider-container">
+        <input type="range" min="0" max="100" value="50" class="slider" id="camera-slider">
     </div>
 
     <script src="script.js"></script>
