@@ -1,29 +1,3 @@
-document.getElementById('email-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var email = document.getElementById('email').value;
-    var statusDiv = document.getElementById('status');
-    
-    statusDiv.textContent = 'Submitting...';
-    console.log('Attempting to submit email:', email);
-    
-    var script = document.createElement('script');
-    script.src = 'https://script.google.com/macros/s/AKfycbwdyu9qhjJ-iGdqYKP1w9jNjRi6ZCgpMsMQovtuhmdcaPViOLPw4wYUHsetrcObyDys/exec?callback=handleResponse&email=' + encodeURIComponent(email);
-    document.body.appendChild(script);
-});
-
-function handleResponse(response) {
-    var statusDiv = document.getElementById('status');
-    console.log('Response:', response);
-    if (response.result === "success") {
-        statusDiv.textContent = 'Thank you for signing up!';
-        document.getElementById('email').value = '';
-    } else {
-        statusDiv.textContent = 'Error: ' + response.message;
-    }
-}
-
-// Redacted Poetry 
-
 const MOBILE_IMAGE_WIDTH_PERCENTAGE = 0.85;
 const INK_BLEED_WIDTH = 20; // Width of the ink bleed effect in pixels
 let cursorX, containerRect, isLandscape;
@@ -71,6 +45,16 @@ const updateSlider = () => {
     document.getElementById('camera-slider').value = Math.min(100, Math.max(0, percentage));
 };
 
+const switchToMobileImages = () => {
+    document.querySelector('#redacted .poem-image').src = 'src/REDACTED-POEM-MOBILE.png';
+    document.querySelector('#unredacted .poem-image').src = 'src/UNREDACTED-POEM-MOBILE.png';
+};
+
+const switchToDesktopImages = () => {
+    document.querySelector('#redacted .poem-image').src = 'src/REDACTED-POEM.png';
+    document.querySelector('#unredacted .poem-image').src = 'src/UNREDACTED-POEM.png';
+};
+
 const handleResize = () => {
     containerRect = document.getElementById('container').getBoundingClientRect();
     isLandscape = isLandscapeMode();
@@ -79,6 +63,13 @@ const handleResize = () => {
     cursorX = isMobileOrTablet() ? containerRect.width * MOBILE_IMAGE_WIDTH_PERCENTAGE : containerRect.width;
     updateSlider();
     animate();
+
+    // Switch images based on device
+    if (isMobileOrTablet()) {
+        switchToMobileImages();
+    } else {
+        switchToDesktopImages();
+    }
 };
 
 const initializeFullRedacted = () => {
@@ -114,4 +105,30 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('orientationchange', handleResize);
 
     initializeFullRedacted();
+    handleResize(); // Call handleResize initially to set the correct images on page load
 });
+
+// Email form submission logic
+document.getElementById('email-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = document.getElementById('email').value;
+    var statusDiv = document.getElementById('status');
+    
+    statusDiv.textContent = 'Not for the mediocre...';
+    console.log('Attempting to submit email:', email);
+    
+    var script = document.createElement('script');
+    script.src = 'https://script.google.com/macros/s/AKfycbwdyu9qhjJ-iGdqYKP1w9jNjRi6ZCgpMsMQovtuhmdcaPViOLPw4wYUHsetrcObyDys/exec?callback=handleResponse&email=' + encodeURIComponent(email);
+    document.body.appendChild(script);
+});
+
+function handleResponse(response) {
+    var statusDiv = document.getElementById('status');
+    console.log('Response:', response);
+    if (response.result === "success") {
+        statusDiv.textContent = 'Thank you for joining!';
+        document.getElementById('email').value = '';
+    } else {
+        statusDiv.textContent = 'Error: ' + response.message;
+    }
+}
