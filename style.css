@@ -30,6 +30,11 @@ nav .logo-container img {
     transition: height 0.3s;
 }
 
+@media (max-width: 480px) {
+    nav .logo-container img { height: 30px; }
+    nav { padding-top: 40px; }
+}
+
 /* Email Form Styles */
 
 .container {
