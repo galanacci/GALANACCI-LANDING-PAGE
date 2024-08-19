@@ -40,20 +40,20 @@ nav .logo-container img {
 .container {
     text-align: center;
     width: 100%;
-    padding-bottom: 40px;
+    padding-bottom: 40px; /* 40px padding from the bottom */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 #email-form {
-    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     z-index: 1000;
+    margin-bottom: 0; /* Ensure there’s no extra margin */
 }
 
 input[type="email"] {
@@ -109,7 +109,7 @@ button {
         padding: 10px 15px;
     }
     .container {
-        padding-bottom: 40px;
+        padding-bottom: 40px; /* Ensures 40px padding on smaller screens */
     }
 }
 
