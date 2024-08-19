@@ -40,7 +40,7 @@ nav .logo-container img {
 .container {
     text-align: center;
     width: 100%;
-    padding: 0 30px 15px;
+    padding-bottom: 40px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -107,6 +107,9 @@ button {
     }
     button {
         padding: 10px 15px;
+    }
+    .container {
+        padding-bottom: 40px;
     }
 }
 
