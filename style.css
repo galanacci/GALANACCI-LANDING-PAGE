@@ -111,7 +111,7 @@ button {
 
     /* Increase bottom padding on small screens */
     .container {
-        padding-bottom: 70px;
+        padding-bottom: 150px;
     }
 }
 
