@@ -103,7 +103,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     var email = document.getElementById('email').value;
     var statusDiv = document.getElementById('status');
     
-    statusDiv.textContent = 'Just give us a sec...';
+    statusDiv.textContent = 'Wait a moment...';
     console.log('Attempting to submit email:', email);
     
     var script = document.createElement('script');
@@ -115,7 +115,7 @@ function handleResponse(response) {
     var statusDiv = document.getElementById('status');
     console.log('Response:', response);
     if (response.result === "success") {
-        statusDiv.textContent = 'Thank you for joining! Remember greatness takes time!';
+        statusDiv.textContent = 'Thank you for joining!';
         document.getElementById('email').value = '';
     } else {
         statusDiv.textContent = 'Error: ' + response.message;
