@@ -40,20 +40,25 @@ nav .logo-container img {
 .container {
     text-align: center;
     width: 100%;
-    padding-bottom: 40px; /* 40px padding from the bottom */
+    padding-bottom: 40px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     flex-grow: 1;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #email-form {
     display: flex;
     justify-content: center;
     z-index: 1000;
-    margin-bottom: 0; /* Ensure there’s no extra margin */
+    margin-bottom: 0;
     width: 100%;
 }
 
@@ -83,9 +88,9 @@ button {
 }
 
 button:hover {
-background-color: black;
-border: 0.2px solid #673CAF;
-color: #673CAF;
+    background-color: black;
+    border: 0.2px solid #673CAF;
+    color: #673CAF;
 }
 
 #status {
@@ -116,7 +121,7 @@ color: #673CAF;
         padding: 10px 15px;
     }
     .container {
-        padding-bottom: 40px; /* Ensures 40px padding on smaller screens */
+        padding-bottom: 20px;
     }
 }
 
@@ -130,6 +135,9 @@ color: #673CAF;
     height: 100%;
     overflow: hidden;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .side img {
@@ -165,15 +173,24 @@ color: #673CAF;
 }
 
 /* Slider styles */
+#camera-slider-container {
+    opacity: 0;
+}
 
-#camera-slider {
-    width: 80%;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 5px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.0;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+/* Copyright notice styles */
+.copyright {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+    opacity: 0.2;
+    z-index: 1000;
+}
+
+/* Adjust container padding to accommodate copyright text */
+.container {
+    padding-bottom: 30px;
 }
