@@ -4,7 +4,7 @@ html, body {
     justify-content: space-between;
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Lora', serif;
     background-color: black;
     overflow: hidden;
 }
@@ -73,6 +73,8 @@ input[type="email"] {
     color: white; 
     border: 0.2px solid white; 
     z-index: 1000;
+    font-family: 'Lora', serif;
+    font-weight: 400;
 }
 
 button {
@@ -96,7 +98,7 @@ button:hover {
 #status {
     width: 100%;
     margin-top: 10px;
-    font-weight: normal;
+    font-weight: 700;
     color: white;
     text-align: center;
     z-index: 1000;
@@ -172,25 +174,25 @@ button:hover {
     }
 }
 
-/* Slider styles */
 #camera-slider-container {
     opacity: 0;
 }
 
-/* Copyright notice styles */
+/* Copyright Label */
+
 .copyright {
     position: fixed;
-    bottom: 10px;
+    bottom: 25px;
     left: 0;
     width: 100%;
     text-align: center;
     font-size: 10px;
     color: white;
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: 1000;
+    font-weight: 700;
 }
 
-/* Adjust container padding to accommodate copyright text */
 .container {
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
