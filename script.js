@@ -104,11 +104,10 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     var email = document.getElementById('email').value;
     var statusDiv = document.getElementById('status');
     
-    statusDiv.textContent = 'Wait a moment...';
+    statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-    // Use fetch API for POST request
-    fetch('https://script.google.com/macros/s/AKfycbzfWPRm5xrJBAxLYMAF9Y5uvHVuJ46qfLIMDR3o2F6rIumpSVZ8smOoxOwZrmCvl0hG/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwAi3Q9elziX7mbXOKhJ4L2EPb34DaxUHf9NJqHyv3M36g1dBaVWWaitxXRQXU22wj9/exec', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -117,20 +116,17 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
         body: JSON.stringify({ email: email })
     })
     .then(response => response.json())
-    .then(data => handleResponse(data))
+    .then(data => {
+        console.log('Response:', data);
+        if (data.result === "success") {
+            statusDiv.textContent = 'Thank you for joining!';
+            document.getElementById('email').value = '';
+        } else {
+            statusDiv.textContent = 'Error: ' + data.message;
+        }
+    })
     .catch(error => {
         console.error('Error:', error);
         statusDiv.textContent = 'An error occurred. Please try again.';
     });
 });
-
-function handleResponse(response) {
-    var statusDiv = document.getElementById('status');
-    console.log('Response:', response);
-    if (response.result === "success") {
-        statusDiv.textContent = 'Thank you for joining!';
-        document.getElementById('email').value = '';
-    } else {
-        statusDiv.textContent = 'Error: ' + response.message;
-    }
-}
