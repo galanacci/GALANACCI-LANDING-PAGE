@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Email form submission logic
+
 document.getElementById('email-form').addEventListener('submit', function(e) {
     e.preventDefault();
     var email = document.getElementById('email').value;
@@ -107,7 +108,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     console.log('Attempting to submit email:', email);
     
     var script = document.createElement('script');
-    script.src = 'https://script.google.com/macros/s/AKfycbxKOay-jNoTpw8kPtNzUU_Yg13pxE6dky5t4FWM7I7kTlqYvOCZLsKnp6m8MfRRIi3v/exec' + encodeURIComponent(email);
+    script.src = 'https://script.google.com/macros/s/AKfycbxKOay-jNoTpw8kPtNzUU_Yg13pxE6dky5t4FWM7I7kTlqYvOCZLsKnp6m8MfRRIi3v/exec?callback=handleResponse&email=' + encodeURIComponent(email);
     document.body.appendChild(script);
 });
 
