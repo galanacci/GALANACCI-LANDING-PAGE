@@ -107,9 +107,21 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Wait a moment...';
     console.log('Attempting to submit email:', email);
     
-    var script = document.createElement('script');
-    script.src = 'https://script.google.com/macros/s/AKfycbzIGpH52dMRf2CZhvQ4OVVEtNQrtKEOByTn8JsaNuvve5HM17hDOG9Q5rgfZc7jIXq1/exec?callback=handleResponse&email=' + encodeURIComponent(email);
-    document.body.appendChild(script);
+    // Use fetch API for POST request
+    fetch('https://script.google.com/macros/s/AKfycbzfWPRm5xrJBAxLYMAF9Y5uvHVuJ46qfLIMDR3o2F6rIumpSVZ8smOoxOwZrmCvl0hG/exec', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => handleResponse(data))
+    .catch(error => {
+        console.error('Error:', error);
+        statusDiv.textContent = 'An error occurred. Please try again.';
+    });
 });
 
 function handleResponse(response) {
