@@ -107,7 +107,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     console.log('Attempting to submit email:', email);
     
     var script = document.createElement('script');
-    script.src = 'https://script.google.com/macros/s/AKfycbwdyu9qhjJ-iGdqYKP1w9jNjRi6ZCgpMsMQovtuhmdcaPViOLPw4wYUHsetrcObyDys/exec?callback=handleResponse&email=' + encodeURIComponent(email);
+    script.src = 'https://script.google.com/macros/s/AKfycbyJkIgCF5c27N0TR0AAfkJ-Q6xmGX0TMnIFTseX2MgzE60b6qCnbxCbhbOthfNBxkCi/exec' + encodeURIComponent(email);
     document.body.appendChild(script);
 });
 
