@@ -107,25 +107,18 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Wait a moment...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbxOmpbHOv9qwB1IUW4nrzRWD1ZX_rBgGWxI2dYLAFuzt53U3GXc9k_LHOGzp8Bg2NGj/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        if (data.result === "success") {
-            statusDiv.textContent = 'Thank you for joining!';
-            document.getElementById('email').value = '';
-        } else {
-            statusDiv.textContent = 'Error: ' + data.message;
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        statusDiv.textContent = 'An error occurred. Please try again.';
-    });
+    var script = document.createElement('script');
+    script.src = 'https://script.google.com/macros/s/AKfycbxKOay-jNoTpw8kPtNzUU_Yg13pxE6dky5t4FWM7I7kTlqYvOCZLsKnp6m8MfRRIi3v/exec?callback=handleResponse&email=' + encodeURIComponent(email);
+    document.body.appendChild(script);
 });
+
+function handleResponse(response) {
+    var statusDiv = document.getElementById('status');
+    console.log('Response:', response);
+    if (response.result === "success") {
+        statusDiv.textContent = 'Thank you for joining!';
+        document.getElementById('email').value = '';
+    } else {
+        statusDiv.textContent = 'Error: ' + response.message;
+    }
+}
