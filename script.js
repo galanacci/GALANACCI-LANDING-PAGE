@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('orientationchange', handleResize);
 
     initializeFullRedacted();
-    handleResize(); // Call handleResize initially to set the correct images on page load
+    handleResize(); 
 });
 
 // Email form submission logic
@@ -108,7 +108,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     console.log('Attempting to submit email:', email);
     
     var script = document.createElement('script');
-    script.src = 'https://script.google.com/macros/s/AKfycbxOmpbHOv9qwB1IUW4nrzRWD1ZX_rBgGWxI2dYLAFuzt53U3GXc9k_LHOGzp8Bg2NGj/exec?callback=handleResponse&email=' + encodeURIComponent(email);
+    script.src = 'https://script.google.com/macros/s/AKfycbzIGpH52dMRf2CZhvQ4OVVEtNQrtKEOByTn8JsaNuvve5HM17hDOG9Q5rgfZc7jIXq1/exec?callback=handleResponse&email=' + encodeURIComponent(email);
     document.body.appendChild(script);
 });
 
