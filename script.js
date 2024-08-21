@@ -107,7 +107,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Wait a moment...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbxKOay-jNoTpw8kPtNzUU_Yg13pxE6dky5t4FWM7I7kTlqYvOCZLsKnp6m8MfRRIi3v/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbxOmpbHOv9qwB1IUW4nrzRWD1ZX_rBgGWxI2dYLAFuzt53U3GXc9k_LHOGzp8Bg2NGj/exec', {
         method: 'POST',
         mode: 'cors',
         headers: {
