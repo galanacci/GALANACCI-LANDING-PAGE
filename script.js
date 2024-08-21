@@ -107,7 +107,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbwAi3Q9elziX7mbXOKhJ4L2EPb34DaxUHf9NJqHyv3M36g1dBaVWWaitxXRQXU22wj9/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwuUjVT7a4EKdlrTN9DQZo-5MEdpbgOzyOQVtcPo23otsUfGLNrSzLfzBIZ9RQ0cRCb/exec', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -115,7 +115,12 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
         },
         body: JSON.stringify({ email: email })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
     .then(data => {
         console.log('Response:', data);
         if (data.result === "success") {
@@ -127,6 +132,9 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     })
     .catch(error => {
         console.error('Error:', error);
-        statusDiv.textContent = 'An error occurred. Please try again.';
+        statusDiv.textContent = 'An error occurred: ' + error.message;
+        if (error.message.includes('CORS')) {
+            statusDiv.textContent += ' CORS issue detected. Please check server configuration.';
+        }
     });
 });
