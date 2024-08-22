@@ -104,7 +104,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     var email = document.getElementById('email').value;
     var statusDiv = document.getElementById('status');
     
-    statusDiv.textContent = 'Submitting...';
+    statusDiv.textContent = 'Greatness takes time...';
     console.log('Attempting to submit email:', email);
     
     fetch('https://script.google.com/macros/s/AKfycbzIGpH52dMRf2CZhvQ4OVVEtNQrtKEOByTn8JsaNuvve5HM17hDOG9Q5rgfZc7jIXq1/exec', {
