@@ -107,7 +107,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbwSe-VonSR23iaay6j5oPsQq5yWTTVq1S-jGNfwkGP3Mj4wSh976tmKWNpMW5TRWTVI/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbxFtHMtFysWBk6hRNQ6hzy8iJjcrhy8Oo2PrbMVo_7aDaaWmv4yUs4eSOWFq10mJjUy/exec', {
         method: 'POST',
         mode: 'no-cors', // This is the key change
         headers: {
