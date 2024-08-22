@@ -108,26 +108,22 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     console.log('Attempting to submit email:', email);
     const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
     
-    fetch('https://script.google.com/macros/s/AKfycbyOi0d9muJRewC1x5wuO1Cz5lu602p78I1U4pJeW2mEqdHu7mNwF6d1lbD_woSp57yq/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyXo2FJ1XFoK2YVTNl2v8MbBQgwgSS_TYfYf5BkH0KfmNLWH8Xi9BAHe9NUlQUTEF7w/exec', {
         method: 'POST',
         mode: 'cors',
-        credentials: 'omit',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: email })
     })
     .then(response => {
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
-        return response.text();
-    })
-    .then(text => {
-        console.log('Response text:', text);
-        return JSON.parse(text);
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
     })
     .then(data => {
-        console.log('Parsed response:', data);
+        console.log('Response:', data);
         if (data.result === "success") {
             statusDiv.textContent = 'Thank you for joining!';
             document.getElementById('email').value = '';
