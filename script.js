@@ -107,7 +107,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbwoWHcsYCKKSG7GsftiEW7dBouvQMN-aAt3aS6KveCo43MlvnU8Fi-uoxrWptfmE5mx/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwrzzuK3gRxI43Eckxn3GcTNowfJvMrt3cZm14WZjgym0C9Eq84_cfk9BZ4HnbrLFzU/exec', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -116,20 +116,13 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
         body: JSON.stringify({ email: email })
     })
     .then(response => {
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
-        return response.text();
-    })
-    .then(text => {
-        console.log('Response text:', text);
-        try {
-            return JSON.parse(text);
-        } catch (error) {
-            throw new Error('Invalid JSON response: ' + text);
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
         }
+        return response.json();
     })
     .then(data => {
-        console.log('Parsed response:', data);
+        console.log('Response:', data);
         if (data.result === "success") {
             statusDiv.textContent = 'Thank you for joining!';
             document.getElementById('email').value = '';
