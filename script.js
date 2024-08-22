@@ -107,7 +107,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbwrzzuK3gRxI43Eckxn3GcTNowfJvMrt3cZm14WZjgym0C9Eq84_cfk9BZ4HnbrLFzU/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbzKJVC6zCVlx8RuF54ZxIFm5ondJxs0xE1_0hOQCloR3eV4k3ffxvUPaYzueDgryRaF/exec', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -116,6 +116,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
         body: JSON.stringify({ email: email })
     })
     .then(response => {
+        console.log('Response status:', response.status);
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
         }
