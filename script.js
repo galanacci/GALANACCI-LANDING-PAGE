@@ -107,15 +107,16 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbxFtHMtFysWBk6hRNQ6hzy8iJjcrhy8Oo2PrbMVo_7aDaaWmv4yUs4eSOWFq10mJjUy/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbzHd0Y2ZpyMu47-pvqBO4d1M2bVUiZ7aY5vtoxBDcQ8WNUBqNxWiVmhaDsFjJvlg2vo/exec', {
         method: 'POST',
-        mode: 'no-cors', // This is the key change
+        mode: 'no-cors',
         headers: {
-            'Content-Type': 'text/plain', // Changed from 'application/json'
+            'Content-Type': 'text/plain',
         },
         body: JSON.stringify({ email: email })
     })
     .then(response => {
+        console.log('Response received:', response);
         statusDiv.textContent = 'Thank you for joining!';
         document.getElementById('email').value = '';
     })
