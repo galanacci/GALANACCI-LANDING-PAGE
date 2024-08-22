@@ -107,31 +107,31 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-fetch('https://script.google.com/macros/s/AKfycbwS-iZ1wQtPKh19zPg853m5g6X9CVFbE-BqcOoE0-R61CPz1Wa_WxvPlWOHn3ycY6-O/exec', {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email: email })
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.json();
-})
-.then(data => {
-    console.log('Response:', data);
-    if (data.result === "success") {
-        statusDiv.textContent = 'Thank you for joining!';
-        document.getElementById('email').value = '';
-    } else {
-        statusDiv.textContent = 'Error: ' + data.message;
-    }
-})
-.catch(error => {
-    console.error('Error:', error);
-    statusDiv.textContent = 'An error occurred: ' + error.message;
-});
+    fetch('https://script.google.com/macros/s/AKfycbwS-iZ1wQtPKh19zPg853m5g6X9CVFbE-BqcOoE0-R61CPz1Wa_WxvPlWOHn3ycY6-O/exec', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response:', data);
+        if (data.result === "success") {
+            statusDiv.textContent = 'Thank you for joining!';
+            document.getElementById('email').value = '';
+        } else {
+            statusDiv.textContent = 'Error: ' + data.message;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        statusDiv.textContent = 'An error occurred: ' + error.message;
+    });
 });
