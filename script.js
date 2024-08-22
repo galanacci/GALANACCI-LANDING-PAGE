@@ -107,34 +107,30 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbxarklWo8rXDuKf5k0qkyWi3G2_KCI_zaXalMtEC_9n4uQbsbREJvrFNF3_ItfyclNW/exec', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Response:', data);
-        if (data.result === "success") {
-            statusDiv.textContent = 'Thank you for joining!';
-            document.getElementById('email').value = '';
-        } else {
-            statusDiv.textContent = 'Error: ' + data.message;
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        statusDiv.textContent = 'An error occurred: ' + error.message;
-        if (error.message.includes('CORS')) {
-            statusDiv.textContent += ' CORS issue detected. Please check server configuration.';
-        }
-    });
+fetch('https://script.google.com/macros/s/AKfycbxarklWo8rXDuKf5k0qkyWi3G2_KCI_zaXalMtEC_9n4uQbsbREJvrFNF3_ItfyclNW/exec', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email: email })
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Response:', data);
+    if (data.result === "success") {
+        statusDiv.textContent = 'Thank you for joining!';
+        document.getElementById('email').value = '';
+    } else {
+        statusDiv.textContent = 'Error: ' + data.message;
+    }
+})
+.catch(error => {
+    console.error('Error:', error);
+    statusDiv.textContent = 'An error occurred: ' + error.message;
 });
