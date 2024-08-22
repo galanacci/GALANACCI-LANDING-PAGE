@@ -134,3 +134,4 @@ fetch('https://script.google.com/macros/s/AKfycbwS-iZ1wQtPKh19zPg853m5g6X9CVFbE-
     console.error('Error:', error);
     statusDiv.textContent = 'An error occurred: ' + error.message;
 });
+});
