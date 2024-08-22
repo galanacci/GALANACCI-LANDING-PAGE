@@ -106,10 +106,12 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     
     statusDiv.textContent = 'Submitting...';
     console.log('Attempting to submit email:', email);
+    const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
     
-    fetch('https://script.google.com/macros/s/AKfycbzKJVC6zCVlx8RuF54ZxIFm5ondJxs0xE1_0hOQCloR3eV4k3ffxvUPaYzueDgryRaF/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyOi0d9muJRewC1x5wuO1Cz5lu602p78I1U4pJeW2mEqdHu7mNwF6d1lbD_woSp57yq/exec', {
         method: 'POST',
         mode: 'cors',
+        credentials: 'omit',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -117,13 +119,15 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     })
     .then(response => {
         console.log('Response status:', response.status);
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.json();
+        console.log('Response headers:', response.headers);
+        return response.text();
+    })
+    .then(text => {
+        console.log('Response text:', text);
+        return JSON.parse(text);
     })
     .then(data => {
-        console.log('Response:', data);
+        console.log('Parsed response:', data);
         if (data.result === "success") {
             statusDiv.textContent = 'Thank you for joining!';
             document.getElementById('email').value = '';
