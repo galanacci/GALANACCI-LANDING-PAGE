@@ -26,12 +26,12 @@ nav {
 }
 
 nav .logo-container img {
-    height: 50px;
+    height: 80px;
     transition: height 0.3s;
 }
 
 @media (max-width: 480px) {
-    nav .logo-container img { height: 40px; }
+    nav .logo-container img { height: 60px; }
     nav { padding-top: 40px; }
 }
 
