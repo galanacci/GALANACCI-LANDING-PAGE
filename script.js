@@ -72,7 +72,7 @@ const initializeFullRedacted = () => {
 };
 
 // Typing animation
-const phrases = ["Enter you email here...", "To join the waiting list!"];
+const phrases = ["Enter your email here...", "To join our waiting list!"];
 let currentPhraseIndex = 0;
 let currentCharIndex = 0;
 let isDeleting = false;
@@ -93,7 +93,7 @@ function typeAnimation() {
     if (!isDeleting && currentCharIndex === currentPhrase.length) {
         isDeleting = true;
         typingSpeed = 50;
-        setTimeout(typeAnimation, 1000); // Pause before deleting
+        setTimeout(typeAnimation, 800); // Pause before deleting
     } else if (isDeleting && currentCharIndex === 0) {
         isDeleting = false;
         currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
