@@ -72,7 +72,7 @@ const initializeFullRedacted = () => {
 };
 
 // Typing animation
-const phrases = ["Enter email here...", "To join the waiting list!"];
+const phrases = ["Enter you email here...", "To join the waiting list!"];
 let currentPhraseIndex = 0;
 let currentCharIndex = 0;
 let isDeleting = false;
