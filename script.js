@@ -71,6 +71,39 @@ const initializeFullRedacted = () => {
     updateClipPath(100);
 };
 
+// Typing animation
+const phrases = ["Enter email here...", "To join the waiting list!"];
+let currentPhraseIndex = 0;
+let currentCharIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
+
+function typeAnimation() {
+    const placeholder = document.getElementById('animated-placeholder');
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    if (isDeleting) {
+        placeholder.textContent = currentPhrase.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+    } else {
+        placeholder.textContent = currentPhrase.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+    }
+
+    if (!isDeleting && currentCharIndex === currentPhrase.length) {
+        isDeleting = true;
+        typingSpeed = 50;
+        setTimeout(typeAnimation, 1000); // Pause before deleting
+    } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        typingSpeed = 100;
+        setTimeout(typeAnimation, 500); // Pause before typing next phrase
+    } else {
+        setTimeout(typeAnimation, typingSpeed);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('container');
     const slider = document.getElementById('camera-slider');
@@ -95,6 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initializeFullRedacted();
     handleResize(); 
+
+    // Start the typing animation
+    typeAnimation();
+
+    // Hide placeholder when input is focused
+    document.getElementById('email').addEventListener('focus', function() {
+        document.getElementById('animated-placeholder').style.display = 'none';
+    });
+
+    // Show placeholder when input is blurred and empty
+    document.getElementById('email').addEventListener('blur', function() {
+        if (this.value === '') {
+            document.getElementById('animated-placeholder').style.display = 'block';
+        }
+    });
 });
 
 // Email form submission logic

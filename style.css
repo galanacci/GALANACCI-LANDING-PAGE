@@ -69,16 +69,21 @@ input[type="email"] {
     max-width: 250px;
     margin-right: 10px;
     border-radius: 0px;
-    background-color: black; 
+    background-color: transparent; 
     color: white; 
     border: 0.2px solid white; 
     z-index: 1000;
     font-family: 'Lora', serif;
     font-weight: 400;
+    position: relative;
+}
+
+input[type="email"]::placeholder {
+    color: transparent;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 10px 15px;
     font-size: 16px;
     background-color: black;
     border: 0.2px solid white;
@@ -195,4 +200,22 @@ button:hover {
 
 .container {
     padding-bottom: 50px;
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+}
+
+#animated-placeholder {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    font-size: 16px;
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    z-index: 10;
 }
