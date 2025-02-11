@@ -160,7 +160,7 @@ document.getElementById('email-form').addEventListener('submit', function(e) {
     statusDiv.textContent = 'Greatness takes time...';
     console.log('Attempting to submit email:', email);
     
-    fetch('https://script.google.com/macros/s/AKfycbzIGpH52dMRf2CZhvQ4OVVEtNQrtKEOByTn8JsaNuvve5HM17hDOG9Q5rgfZc7jIXq1/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyBn5PjNIwn4nG_pLb5WX_ShTs3qQuzc7O8-ggouHA-ejnaCKnT3AKRxGbWdv1pnpUv/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
